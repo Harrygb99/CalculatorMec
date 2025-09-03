@@ -174,7 +174,7 @@
       <h2>Itens da Casa</h2>
       <table>
         <tr><th>Item</th><th>Preço</th><th>Quantidade</th></tr>
-        <tr><td>OURO</td><td id="price_OURO">R$ 25.000,00</td><td><input type="number" name="OURO" min="0" value="0"></td></tr>
+        <tr><td>OURO</td><td id="price_OURO">R$ 50.000,00</td><td><input type="number" name="OURO" min="0" value="0"></td></tr>
       </table>
       <div class="button-group">
         <button type="button" class="calculate" onclick="calcular()">Calcular</button>
@@ -227,9 +227,9 @@
         totalCasa += casaPrices[item] * qty;
       }
       const taxaCasa = totalCasa * 0.30;
-      const clienteRecebe = totalCasa * 0.70;
-      const faccaoCasa = taxaCasa * 0.5;
-      const funcionarioCasa = taxaCasa * 0.5;
+      const clienteRecebe = totalCasa * 0.85;
+      const faccaoCasa = taxaCasa * 0.15;
+      const funcionarioCasa = taxaCasa * 0.0;
       const faccaoNormal = totalNormal * 0.7;
       const funcionarioNormal = totalNormal * 0.3;
       const totalFac = faccaoCasa + faccaoNormal;
