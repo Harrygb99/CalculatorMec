@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Calculadora de Produtos</title>
+  <title>Calculadora de Mecânica</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
@@ -20,7 +20,7 @@
       background: #282a36;
       padding: 40px;
       border-radius: 15px;
-      max-width: 900px;
+      max-width: 1000px;
       width: 100%;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     }
@@ -31,14 +31,20 @@
       margin-bottom: 30px;
       text-shadow: 0 2px 5px #000;
     }
+    h2 {
+      margin-top: 30px;
+      color: #50fa7b;
+      border-bottom: 1px solid #44475a;
+      padding-bottom: 8px;
+    }
     table {
       width: 100%;
-      margin-top: 20px;
+      margin-top: 15px;
       border-collapse: collapse;
     }
     th, td {
-      padding: 14px;
-      font-size: 1.2em;
+      padding: 12px;
+      font-size: 1.1em;
       border-bottom: 1px solid #44475a;
     }
     input[type="number"] {
@@ -83,182 +89,111 @@
       padding: 20px;
       margin-top: 30px;
       border-radius: 10px;
-      font-size: 1.2em;
-      border: 1px solid #444;
-    }
-    .toggle-container {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 15px;
-      margin-bottom: 25px;
-    }
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 60px;
-      height: 34px;
-    }
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #6272a4;
-      transition: .4s;
-      border-radius: 34px;
-    }
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 26px;
-      width: 26px;
-      left: 4px;
-      bottom: 4px;
-      background-color: #8be9fd;
-      transition: .4s;
-      border-radius: 50%;
-    }
-    input:checked + .slider {
-      background-color: #50fa7b;
-    }
-    input:checked + .slider:before {
-      transform: translateX(26px);
-    }
-    label {
       font-size: 1.3em;
-    }
-    .music-player {
-      margin-top: 20px;
+      border: 1px solid #444;
       text-align: center;
-    }
-    .music-player button {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 10px;
-      background: linear-gradient(to right, #50fa7b, #44a66a);
-      color: #000;
-      font-size: 1em;
-      cursor: pointer;
-      margin-right: 10px;
-    }
-    .music-player input[type="range"] {
-      width: 150px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Calculadora de Produtos</h1>
-    <div class="toggle-container">
-      <label for="parceriaToggle">Preços com Parceria</label>
-      <label class="switch">
-        <input type="checkbox" id="parceriaToggle" onchange="updatePrices()">
-        <span class="slider"></span>
-      </label>
-    </div>
+    <h1>🔧 Calculadora de Mecânica</h1>
+
     <form id="calcForm">
-      <h2>Produtos</h2>
+
+      <!-- SERVIÇOS DE OFICINA -->
+      <h2>🔩 Serviços de Oficina</h2>
       <table>
-        <tr><th>Produto</th><th>Preço</th><th>Quantidade</th></tr>
-        <tr><td>PÉ DE CABRA</td><td id="price_PE_DE_CABRA">R$ 5.000,00</td><td><input type="number" name="PE_DE_CABRA" min="0" value="0"></td></tr>
-        <tr><td>PAGER</td><td id="price_PAGER">R$ 4.500,00</td><td><input type="number" name="PAGER" min="0" value="0"></td></tr>
+        <tr><th>Item</th><th>Preço</th><th>Qtd</th></tr>
+        <tr><td>🔩 REPARO</td><td>R$ 300</td><td><input type="number" name="REPARO" min="0" value="0"></td></tr>
+        <tr><td>⚙️ PNEU</td><td>R$ 125</td><td><input type="number" name="PNEU" min="0" value="0"></td></tr>
+        <tr><td>🚗 ATENDIMENTO EXTERNO (SUL)</td><td>R$ 700</td><td><input type="number" name="ATENDIMENTO_SUL" min="0" value="0"></td></tr>
+        <tr><td>🚘 ATENDIMENTO EXTERNO (NORTE)</td><td>R$ 1200</td><td><input type="number" name="ATENDIMENTO_NORTE" min="0" value="0"></td></tr>
+        <tr><td>🔧 CHAVE DE RODA</td><td>R$ 600</td><td><input type="number" name="CHAVE_DE_RODA" min="0" value="0"></td></tr>
+        <tr><td>🧰 VENDA KIT REPARO</td><td>R$ 320</td><td><input type="number" name="KIT_REPARO" min="0" value="0"></td></tr>
+        <tr><td>🛠️ VENDA PNEU</td><td>R$ 125</td><td><input type="number" name="VENDA_PNEU" min="0" value="0"></td></tr>
+        <tr><td>💨 NITRO</td><td>R$ 7500</td><td><input type="number" name="NITRO" min="0" value="0"></td></tr>
       </table>
-      <h2>Itens da Casa</h2>
+
+      <!-- ITENS E ACESSÓRIOS -->
+      <h2>📦 Itens e Acessórios</h2>
       <table>
-        <tr><th>Item</th><th>Preço</th><th>Quantidade</th></tr>
-        <tr><td>OURO</td><td id="price_OURO">R$ 50.000,00</td><td><input type="number" name="OURO" min="0" value="0"></td></tr>
+        <tr><th>Item</th><th>Preço</th><th>Qtd</th></tr>
+        <tr><td>📡 RASTREADOR</td><td>R$ 12500</td><td><input type="number" name="RASTREADOR" min="0" value="0"></td></tr>
+        <tr><td>🏎️ KIT DRIFT (SUSPENSÃO COILOVER)</td><td>R$ 12500</td><td><input type="number" name="KIT_DRIFT" min="0" value="0"></td></tr>
       </table>
+
+      <!-- TUNNING PERFORMANCE -->
+      <h2>💥 Tunning - Melhorias de Performance</h2>
+      <table>
+        <tr><th>Item</th><th>Preço</th><th>Qtd</th></tr>
+        <tr><td>🧠 MOTOR</td><td>R$ 7000 | 9200 | 10000 | 13700 | 17700</td><td><input type="number" name="MOTOR" min="0" value="0"></td></tr>
+        <tr><td>🛑 FREIO</td><td>R$ 7000 | 9200 | 10000 | 13700</td><td><input type="number" name="FREIO" min="0" value="0"></td></tr>
+        <tr><td>⚙️ TRANSMISSÃO</td><td>R$ 9200 | 10000 | 13700 | 17700</td><td><input type="number" name="TRANSMISSAO" min="0" value="0"></td></tr>
+        <tr><td>🏁 SUSPENSÃO</td><td>R$ 7000 | 9200 | 10000 | 13700 | 17700</td><td><input type="number" name="SUSPENSAO" min="0" value="0"></td></tr>
+        <tr><td>🛡️ BLINDAGEM</td><td>R$ 9700 | 11200 | 16000 | 21200 | 26200</td><td><input type="number" name="BLINDAGEM" min="0" value="0"></td></tr>
+        <tr><td>🚀 TURBO</td><td>R$ 5700</td><td><input type="number" name="TURBO" min="0" value="0"></td></tr>
+      </table>
+
+      <!-- TUNNING ESTÉTICO -->
+      <h2>🎨 Tunning - Visual e Estética</h2>
+      <table>
+        <tr><th>Item</th><th>Preço</th><th>Qtd</th></tr>
+        <tr><td>🧼 COSMETIC</td><td>R$ 1200</td><td><input type="number" name="COSMETIC" min="0" value="0"></td></tr>
+        <tr><td>🎨 PINTURA</td><td>R$ 1400</td><td><input type="number" name="PINTURA" min="0" value="0"></td></tr>
+        <tr><td>🚙 RODAS</td><td>R$ 3200</td><td><input type="number" name="RODAS" min="0" value="0"></td></tr>
+        <tr><td>✨ COR DAS RODAS</td><td>R$ 1400</td><td><input type="number" name="COR_RODAS" min="0" value="0"></td></tr>
+        <tr><td>💨 FUMAÇA DAS RODAS</td><td>R$ 950</td><td><input type="number" name="FUMACA_RODAS" min="0" value="0"></td></tr>
+        <tr><td>🕶️ INSUFILM</td><td>R$ 950</td><td><input type="number" name="INSUFILM" min="0" value="0"></td></tr>
+        <tr><td>🌈 NEÓN (LADO)</td><td>R$ 950</td><td><input type="number" name="NEON_LADO" min="0" value="0"></td></tr>
+        <tr><td>🎆 NEÓN (COR)</td><td>R$ 950</td><td><input type="number" name="NEON_COR" min="0" value="0"></td></tr>
+        <tr><td>🔦 XENON (ATIVAÇÃO)</td><td>R$ 950</td><td><input type="number" name="XENON_ATIVACAO" min="0" value="0"></td></tr>
+        <tr><td>💡 XENON (COR)</td><td>R$ 950</td><td><input type="number" name="XENON_COR" min="0" value="0"></td></tr>
+        <tr><td>🚓 POLICE LIVERY (BED)</td><td>R$ 300</td><td><input type="number" name="POLICE_LIVERY" min="0" value="0"></td></tr>
+        <tr><td>📛 EXTRAS</td><td>R$ 2200</td><td><input type="number" name="EXTRAS" min="0" value="0"></td></tr>
+        <tr><td>🚧 PLACA</td><td>R$ 850</td><td><input type="number" name="PLACA" min="0" value="0"></td></tr>
+      </table>
+
       <div class="button-group">
         <button type="button" class="calculate" onclick="calcular()">Calcular</button>
         <button type="button" class="reset" onclick="resetar()">Zerar</button>
       </div>
     </form>
+
     <div id="resultado" class="result"></div>
   </div>
 
-  <!-- Player de música -->
-  <div class="music-player">
-    <button onclick="toggleMusic()" id="playBtn">▶️ Tocar Música</button>
-    <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.5" onchange="setVolume(this.value)">
-  </div>
-
-  <audio id="bgMusic" loop>
-    <source src="JS DA TORRE - MEU AK FAZ PAPA (Música Completa) (Remix) (2).mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio HTML5.
-  </audio>
-
   <script>
-    const prices = {
-      semParceria: { PE_DE_CABRA: 5000, PAGER: 4500 },
-      comParceria: { PE_DE_CABRA: 4000, PAGER: 4000 }
+    const precos = {
+      REPARO: 300, PNEU: 125, ATENDIMENTO_SUL: 700, ATENDIMENTO_NORTE: 1200,
+      CHAVE_DE_RODA: 600, KIT_REPARO: 320, VENDA_PNEU: 125, NITRO: 7500,
+      RASTREADOR: 12500, KIT_DRIFT: 12500, MOTOR: 7000, FREIO: 7000,
+      TRANSMISSAO: 9200, SUSPENSAO: 7000, BLINDAGEM: 9700, TURBO: 5700,
+      COSMETIC: 1200, PINTURA: 1400, RODAS: 3200, COR_RODAS: 1400,
+      FUMACA_RODAS: 950, INSUFILM: 950, NEON_LADO: 950, NEON_COR: 950,
+      XENON_ATIVACAO: 950, XENON_COR: 950, POLICE_LIVERY: 300,
+      EXTRAS: 2200, PLACA: 850
     };
-    const casaPrices = { OURO: 50000 };
-    function formatCurrency(value) { return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); }
-    function updatePrices() {
-      const parceria = document.getElementById("parceriaToggle").checked;
-      const currentPrices = parceria ? prices.comParceria : prices.semParceria;
-      for (const item in currentPrices) {
-        document.getElementById(`price_${item}`).innerText = formatCurrency(currentPrices[item]);
-      }
-      for (const item in casaPrices) {
-        document.getElementById(`price_${item}`).innerText = formatCurrency(casaPrices[item]);
-      }
+
+    function formatCurrency(value) {
+      return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     }
+
     function calcular() {
       const form = document.forms["calcForm"];
-      const parceria = document.getElementById("parceriaToggle").checked;
-      const currentPrices = parceria ? prices.comParceria : prices.semParceria;
-      let totalNormal = 0;
-      for (const item in currentPrices) {
-        const qty = parseInt(form[item].value) || 0;
-        totalNormal += currentPrices[item] * qty;
+      let total = 0;
+      for (const item in precos) {
+        const qtd = parseInt(form[item].value) || 0;
+        total += precos[item] * qtd;
       }
-      let totalCasa = 0;
-      for (const item in casaPrices) {
-        const qty = parseInt(form[item].value) || 0;
-        totalCasa += casaPrices[item] * qty;
-      }
-      const taxaCasa = totalCasa * 0.30;
-      const clienteRecebe = totalCasa * 0.85;
-      const faccaoCasa = taxaCasa * 0.15;
-      const funcionarioCasa = taxaCasa * 0.0;
-      const faccaoNormal = totalNormal * 0.7;
-      const funcionarioNormal = totalNormal * 0.3;
-      const totalFac = faccaoCasa + faccaoNormal;
-      const totalFunc = funcionarioCasa + funcionarioNormal;
-      const totalVenda = totalNormal + totalCasa;
-      document.getElementById("resultado").innerHTML = `
-        <div><strong>🧾 Total Produtos:</strong> ${formatCurrency(totalNormal)}</div>
-        <div><strong>🏠 Total Itens da Casa:</strong> ${formatCurrency(totalCasa)}</div>
-        <div><strong>💸 Cliente Recebe (85% Casa):</strong> ${formatCurrency(clienteRecebe)}</div>
-        <div><strong>📈 Taxa (15% Casa):</strong> ${formatCurrency(taxaCasa)}</div>
-        <div><strong>🛠️ Funcionário Recebe:</strong> ${formatCurrency(totalFunc)}</div>
-        <div><strong>🏴‍☠️ Facção Recebe:</strong> ${formatCurrency(totalFac)}</div>
-        <div><strong>📊 Total Geral da Venda:</strong> ${formatCurrency(totalVenda)}</div>`;
+      document.getElementById("resultado").innerHTML = `<strong>Total: ${formatCurrency(total)}</strong>`;
     }
+
     function resetar() {
       const form = document.forms["calcForm"];
-      for (const input of form.querySelectorAll('input[type="number"]')) { input.value = 0; }
+      for (const input of form.querySelectorAll('input[type="number"]')) input.value = 0;
       document.getElementById("resultado").innerHTML = "";
-      document.getElementById("parceriaToggle").checked = false;
-      updatePrices();
     }
-    function toggleMusic() {
-      const music = document.getElementById("bgMusic");
-      const btn = document.getElementById("playBtn");
-      if (music.paused) { music.play(); btn.textContent = "⏸️ Pausar Música"; }
-      else { music.pause(); btn.textContent = "▶️ Tocar Música"; }
-    }
-    function setVolume(value) { document.getElementById("bgMusic").volume = value; }
-    window.onload = updatePrices;
   </script>
 </body>
 </html>
