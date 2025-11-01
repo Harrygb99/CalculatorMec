@@ -48,13 +48,24 @@
       border-bottom: 1px solid #44475a;
     }
     input[type="number"], select {
-      width: 150px; /* Ajuste o tamanho para caber o select */
+      width: 150px;
       padding: 6px;
       font-size: 1.1em;
       background: #383a4a;
       color: #fff;
       border: 1px solid #6272a4;
       border-radius: 8px;
+    }
+    .parceria-options {
+        margin-bottom: 30px;
+        padding: 15px;
+        border: 1px solid #6272a4;
+        border-radius: 10px;
+        text-align: center;
+    }
+    .parceria-options label {
+        margin-right: 20px;
+        font-size: 1.2em;
     }
     .button-group {
       text-align: center;
@@ -101,6 +112,11 @@
 
     <form id="calcForm">
 
+      <div class="parceria-options">
+          <label><input type="radio" name="parceria" value="sem" checked> Sem Parceria</label>
+          <label><input type="radio" name="parceria" value="com"> Com Parceria</label>
+      </div>
+
       <h2>🔩 Serviços de Oficina</h2>
       <table>
         <tr><th>Item</th><th>Preço</th><th>Qtd</th></tr>
@@ -109,9 +125,9 @@
         <tr><td>🚗 ATENDIMENTO EXTERNO (SUL)</td><td>R$ 700</td><td><input type="number" name="ATENDIMENTO_SUL" min="0" value="0"></td></tr>
         <tr><td>🚘 ATENDIMENTO EXTERNO (NORTE)</td><td>R$ 1200</td><td><input type="number" name="ATENDIMENTO_NORTE" min="0" value="0"></td></tr>
         <tr><td>🔧 CHAVE DE RODA</td><td>R$ 600</td><td><input type="number" name="CHAVE_DE_RODA" min="0" value="0"></td></tr>
-        <tr><td>🧰 VENDA KIT REPARO</td><td>R$ 320</td><td><input type="number" name="KIT_REPARO" min="0" value="0"></td></tr>
-        <tr><td>🛠️ VENDA PNEU</td><td>R$ 125</td><td><input type="number" name="VENDA_PNEU" min="0" value="0"></td></tr>
-        <tr><td>💨 NITRO</td><td>R$ 7500</td><td><input type="number" name="NITRO" min="0" value="0"></td></tr>
+        <tr><td>🧰 VENDA KIT REPARO</td><td>R$ 280 / R$ 320</td><td><input type="number" name="KIT_REPARO" min="0" value="0"></td></tr>
+        <tr><td>🛠️ VENDA PNEU</td><td>R$ 100 / R$ 125</td><td><input type="number" name="VENDA_PNEU" min="0" value="0"></td></tr>
+        <tr><td>💨 NITRO</td><td>R$ 7000 / R$ 7500</td><td><input type="number" name="NITRO" min="0" value="0"></td></tr>
       </table>
 
       <h2>📦 Itens e Acessórios</h2>
@@ -203,18 +219,24 @@
   </div>
 
   <script>
-    // Remove os itens de nível fixo, pois eles serão lidos do campo <select>
-    const precos = {
+    // Definição dos preços fixos para todos os itens, exceto os itens com parceria
+    const precosFixos = {
       REPARO: 300, PNEU: 125, ATENDIMENTO_SUL: 700, ATENDIMENTO_NORTE: 1200,
-      CHAVE_DE_RODA: 600, KIT_REPARO: 320, VENDA_PNEU: 125, NITRO: 7500,
-      RASTREADOR: 12500, KIT_DRIFT: 12500, TURBO: 5700,
+      CHAVE_DE_RODA: 600, RASTREADOR: 12500, KIT_DRIFT: 12500, TURBO: 5700,
       COSMETIC: 1200, PINTURA: 1400, RODAS: 3200, COR_RODAS: 1400,
       FUMACA_RODAS: 950, INSUFILM: 950, NEON_LADO: 950, NEON_COR: 950,
       XENON_ATIVACAO: 950, XENON_COR: 950, POLICE_LIVERY: 300,
       EXTRAS: 2200, PLACA: 850
     };
 
-    // Lista dos itens que agora são <select>
+    // Definição dos preços com e sem parceria
+    const precosVariaveis = {
+        KIT_REPARO: { com: 280, sem: 320 },
+        VENDA_PNEU: { com: 100, sem: 125 },
+        NITRO:      { com: 7000, sem: 7500 }
+    };
+
+    // Lista dos itens que são <select> para níveis de performance
     const itensComNiveis = ['MOTOR', 'FREIO', 'TRANSMISSAO', 'SUSPENSAO', 'BLINDAGEM'];
 
     function formatCurrency(value) {
@@ -224,18 +246,29 @@
     function calcular() {
       const form = document.forms["calcForm"];
       let total = 0;
+      
+      // Determina se a parceria está ativa
+      const isParceria = form.parceria.value === 'com';
+      const tipoPreco = isParceria ? 'com' : 'sem';
 
-      // 1. Calcula itens de Qtd (Input Type="Number")
-      for (const item in precos) {
+      // 1. Calcula itens de Qtd com Preços Fixos
+      for (const item in precosFixos) {
         const input = form[item];
         const qtd = parseInt(input ? input.value : '0') || 0;
-        total += precos[item] * qtd;
+        total += precosFixos[item] * qtd;
       }
       
-      // 2. Calcula itens de Nível (Select)
+      // 2. Calcula itens de Qtd com Preços Variáveis (Parceria)
+      for (const item in precosVariaveis) {
+        const input = form[item];
+        const qtd = parseInt(input ? input.value : '0') || 0;
+        const preco = precosVariaveis[item][tipoPreco];
+        total += preco * qtd;
+      }
+      
+      // 3. Calcula itens de Nível (Select)
       itensComNiveis.forEach(item => {
         const select = form[item];
-        // O valor do select é o preço do nível
         const precoNivel = parseInt(select ? select.value : '0') || 0;
         total += precoNivel;
       });
@@ -254,6 +287,9 @@
         const select = form[item];
         if (select) select.value = '0';
       });
+
+      // Reseta o seletor de Parceria para "Sem Parceria"
+      form.parceria.value = 'sem';
       
       document.getElementById("resultado").innerHTML = "";
     }
