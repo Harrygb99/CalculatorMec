@@ -112,6 +112,9 @@
 
     <form id="calcForm">
 
+      <div class="button-group top-button-group">
+        <button type="button" class="calculate" onclick="calcular()">Calcular Total</button>
+      </div>
       <div class="parceria-options">
           <label><input type="radio" name="parceria" value="sem" checked> Sem Parceria</label>
           <label><input type="radio" name="parceria" value="com"> Com Parceria</label>
@@ -122,8 +125,8 @@
         <tr><th>Item</th><th>Preço</th><th>Qtd</th></tr>
         <tr><td>🔩 REPARO</td><td>R$ 300</td><td><input type="number" name="REPARO" min="0" value="0"></td></tr>
         <tr><td>⚙️ PNEU</td><td>R$ 125</td><td><input type="number" name="PNEU" min="0" value="0"></td></tr>
-        <tr><td>🚗 ATENDIMENTO EXTERNO (SUL)</td><td>R$ 700</td><td><input type="number" name="ATENDIMENTO_SUL" min="0" value="0"></td></tr>
-        <tr><td>🚘 ATENDIMENTO EXTERNO (NORTE)</td><td>R$ 1200</td><td><input type="number" name="ATENDIMENTO_NORTE" min="0" value="0"></td></tr>
+        <tr><td>🚗 ATENDIMENTO EXTERNO (SUL)</td><td>R$ 1200</td><td><input type="number" name="ATENDIMENTO_SUL" min="0" value="0"></td></tr>
+        <tr><td>🚘 ATENDIMENTO EXTERNO (NORTE)</td><td>R$ 700</td><td><input type="number" name="ATENDIMENTO_NORTE" min="0" value="0"></td></tr>
         <tr><td>🔧 CHAVE DE RODA</td><td>R$ 600</td><td><input type="number" name="CHAVE_DE_RODA" min="0" value="0"></td></tr>
         <tr><td>🧰 VENDA KIT REPARO</td><td>R$ 280 / R$ 320</td><td><input type="number" name="KIT_REPARO" min="0" value="0"></td></tr>
         <tr><td>🛠️ VENDA PNEU</td><td>R$ 100 / R$ 125</td><td><input type="number" name="VENDA_PNEU" min="0" value="0"></td></tr>
@@ -219,9 +222,10 @@
   </div>
 
   <script>
-    // Definição dos preços fixos para todos os itens, exceto os itens com parceria
+    // Definição dos preços fixos para todos os itens.
+    // ATENDIMENTO_SUL e ATENDIMENTO_NORTE foram corrigidos.
     const precosFixos = {
-      REPARO: 300, PNEU: 125, ATENDIMENTO_SUL: 700, ATENDIMENTO_NORTE: 1200,
+      REPARO: 300, PNEU: 125, ATENDIMENTO_SUL: 1200, ATENDIMENTO_NORTE: 700, // Preços corrigidos
       CHAVE_DE_RODA: 600, RASTREADOR: 12500, KIT_DRIFT: 12500, TURBO: 5700,
       COSMETIC: 1200, PINTURA: 1400, RODAS: 3200, COR_RODAS: 1400,
       FUMACA_RODAS: 950, INSUFILM: 950, NEON_LADO: 950, NEON_COR: 950,
