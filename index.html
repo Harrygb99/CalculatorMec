@@ -56,7 +56,17 @@
       border: 1px solid #6272a4;
       border-radius: 8px;
     }
-    /* Removido o estilo de Parceria pois a lógica foi removida */
+    .parceria-options {
+        margin-bottom: 30px;
+        padding: 15px;
+        border: 1px solid #6272a4;
+        border-radius: 10px;
+        text-align: center;
+    }
+    .parceria-options label {
+        margin-right: 20px;
+        font-size: 1.2em;
+    }
     .button-group {
       text-align: center;
       margin-top: 30px;
@@ -106,25 +116,26 @@
         <button type="button" class="calculate" onclick="calcular()">Calcular Total</button>
       </div>
 
+      <div class="parceria-options">
+          <label><input type="radio" name="parceria" value="sem" checked> Sem Parceria</label>
+          <label><input type="radio" name="parceria" value="com"> Com Parceria</label>
+      </div>
+
       <h2>🔩 Serviços de Oficina</h2>
       <table>
         <tr><th>Item</th><th>Preço</th><th>Qtd</th></tr>
         <tr><td>🔩 REPARO (Mantido)</td><td>R$ 300</td><td><input type="number" name="REPARO" min="0" value="0"></td></tr>
-        <tr><td>⚙️ PNEU (Mantido)</td><td>R$ 125</td><td><input type="number" name="PNEU" min="0" value="0"></td></tr>
-        <tr><td>🚗 ATENDIMENTO EXTERNO (SUL)</td><td>R$ 1200</td><td><input type="number" name="ATENDIMENTO_SUL" min="0" value="0"></td></tr>
+        <tr><td>⚙️ PNEU</td><td>R$ 200</td><td><input type="number" name="PNEU" min="0" value="0"></td></tr> <tr><td>🚗 ATENDIMENTO EXTERNO (SUL)</td><td>R$ 1200</td><td><input type="number" name="ATENDIMENTO_SUL" min="0" value="0"></td></tr>
         <tr><td>🚘 ATENDIMENTO EXTERNO (NORTE)</td><td>R$ 700</td><td><input type="number" name="ATENDIMENTO_NORTE" min="0" value="0"></td></tr>
         <tr><td>🔧 CHAVE DE RODA</td><td>R$ 960</td><td><input type="number" name="CHAVE_DE_RODA" min="0" value="0"></td></tr>
-        <tr><td>🧰 VENDA KIT REPARO</td><td>R$ 500</td><td><input type="number" name="VENDA_REPARO" min="0" value="0"></td></tr>
-        <tr><td>🛠️ VENDA PNEU</td><td>R$ 250</td><td><input type="number" name="VENDA_PNEU" min="0" value="0"></td></tr>
-        <tr><td>💨 NITRO</td><td>R$ 9.600</td><td><input type="number" name="NITRO" min="0" value="0"></td></tr>
-      </table>
+        <tr><td>🧰 VENDA KIT REPARO</td><td>R$ 400 / R$ 500</td><td><input type="number" name="VENDA_REPARO" min="0" value="0"></td></tr> <tr><td>🛠️ VENDA PNEU</td><td>R$ 200 / R$ 250</td><td><input type="number" name="VENDA_PNEU" min="0" value="0"></td></tr> <tr><td>💨 NITRO</td><td>R$ 8.000 / R$ 9.600</td><td><input type="number" name="NITRO" min="0" value="0"></td></tr> </table>
 
       <h2>📦 Itens e Acessórios</h2>
       <table>
         <tr><th>Item</th><th>Preço</th><th>Qtd</th></tr>
         <tr><td>📡 RASTREADOR</td><td>R$ 15.600</td><td><input type="number" name="RASTREADOR" min="0" value="0"></td></tr>
         <tr><td>🏎️ KIT DRIFT (COILOVER)</td><td>R$ 15.600</td><td><input type="number" name="COILOVER" min="0" value="0"></td></tr>
-        <tr><td>🔊 BUZINA (Novo Item)</td><td>R$ 1.800</td><td><input type="number" name="BUZINA" min="0" value="0"></td></tr>
+        <tr><td>🔊 BUZINA</td><td>R$ 1.800</td><td><input type="number" name="BUZINA" min="0" value="0"></td></tr>
       </table>
 
       <h2>💥 Tunning - Melhorias de Performance</h2>
@@ -208,42 +219,43 @@
   </div>
 
   <script>
-    // Novos preços fixos baseados na coluna "Valor" da sua tabela.
+    // Definição dos preços fixos para todos os itens.
     const precosFixos = {
-      // Itens de Serviço (Mantidos onde não havia valor na nova tabela)
+      // Itens de Serviço
       REPARO: 300, 
-      PNEU: 125, 
+      PNEU: 200, // <--- CORRIGIDO PARA 200
       ATENDIMENTO_SUL: 1200, 
       ATENDIMENTO_NORTE: 700, 
-      
-      // Itens Atualizados com novos valores
       CHAVE_DE_RODA: 960, 
-      VENDA_REPARO: 500, // Anteriormente KIT_REPARO
-      VENDA_PNEU: 250, 
-      NITRO: 9600,
       
       // Acessórios
       RASTREADOR: 15600, 
-      COILOVER: 15600, // Novo nome para KIT_DRIFT
-      BUZINA: 1800, // Novo item
+      COILOVER: 15600, 
+      BUZINA: 1800, 
       
       // Estética/Visual
       TURBO: 7800,
       COSMETIC: 1800, 
       PINTURA: 1920, 
       RODAS: 4200, 
-      // COR_RODAS: 1400, // Removido pois não está na nova lista
       FUMACA_RODAS: 2160, 
       INSUFILM: 1440, 
-      NEON: 1440, // Substitui NEON_LADO
+      NEON: 1440, 
       NEON_COR: 1440, 
-      XENON: 1440, // Substitui XENON_ATIVAÇÃO
+      XENON: 1440, 
       XENON_COR: 1440,
       PLACA: 3000, 
 
-      // Itens não listados na nova tabela, mantidos com valores anteriores
+      // Itens mantidos
       POLICE_LIVERY: 300, 
       EXTRAS: 2200 
+    };
+
+    // Definição dos preços com e sem parceria (REINTRODUZIDO)
+    const precosVariaveis = {
+        VENDA_REPARO: { com: 400, sem: 500 },
+        VENDA_PNEU: { com: 200, sem: 250 },
+        NITRO:      { com: 8000, sem: 9600 }
     };
 
     // Lista dos itens que são <select> para níveis de performance
@@ -257,15 +269,26 @@
       const form = document.forms["calcForm"];
       let total = 0;
       
+      // Determina se a parceria está ativa
+      const isParceria = form.parceria.value === 'com';
+      const tipoPreco = isParceria ? 'com' : 'sem';
+
       // 1. Calcula itens de Qtd com Preços Fixos
       for (const item in precosFixos) {
-        // Usa o nome do campo atualizado no HTML (ex: VENDA_REPARO, COILOVER)
-        const input = form[item]; 
+        const input = form[item];
         const qtd = parseInt(input ? input.value : '0') || 0;
         total += precosFixos[item] * qtd;
       }
       
-      // 2. Calcula itens de Nível (Select)
+      // 2. Calcula itens de Qtd com Preços Variáveis (Parceria)
+      for (const item in precosVariaveis) {
+        const input = form[item];
+        const qtd = parseInt(input ? input.value : '0') || 0;
+        const preco = precosVariaveis[item][tipoPreco];
+        total += preco * qtd;
+      }
+      
+      // 3. Calcula itens de Nível (Select)
       itensComNiveis.forEach(item => {
         const select = form[item];
         const precoNivel = parseInt(select ? select.value : '0') || 0;
@@ -286,6 +309,9 @@
         const select = form[item];
         if (select) select.value = '0';
       });
+
+      // Reseta o seletor de Parceria para "Sem Parceria"
+      if (form.parceria) form.parceria.value = 'sem';
       
       document.getElementById("resultado").innerHTML = "";
     }
