@@ -56,17 +56,7 @@
       border: 1px solid #6272a4;
       border-radius: 8px;
     }
-    .parceria-options {
-        margin-bottom: 30px;
-        padding: 15px;
-        border: 1px solid #6272a4;
-        border-radius: 10px;
-        text-align: center;
-    }
-    .parceria-options label {
-        margin-right: 20px;
-        font-size: 1.2em;
-    }
+    /* Removido o estilo de Parceria pois a lógica foi removida */
     .button-group {
       text-align: center;
       margin-top: 30px;
@@ -115,29 +105,26 @@
       <div class="button-group top-button-group">
         <button type="button" class="calculate" onclick="calcular()">Calcular Total</button>
       </div>
-      <div class="parceria-options">
-          <label><input type="radio" name="parceria" value="sem" checked> Sem Parceria</label>
-          <label><input type="radio" name="parceria" value="com"> Com Parceria</label>
-      </div>
 
       <h2>🔩 Serviços de Oficina</h2>
       <table>
         <tr><th>Item</th><th>Preço</th><th>Qtd</th></tr>
-        <tr><td>🔩 REPARO</td><td>R$ 300</td><td><input type="number" name="REPARO" min="0" value="0"></td></tr>
-        <tr><td>⚙️ PNEU</td><td>R$ 125</td><td><input type="number" name="PNEU" min="0" value="0"></td></tr>
+        <tr><td>🔩 REPARO (Mantido)</td><td>R$ 300</td><td><input type="number" name="REPARO" min="0" value="0"></td></tr>
+        <tr><td>⚙️ PNEU (Mantido)</td><td>R$ 125</td><td><input type="number" name="PNEU" min="0" value="0"></td></tr>
         <tr><td>🚗 ATENDIMENTO EXTERNO (SUL)</td><td>R$ 1200</td><td><input type="number" name="ATENDIMENTO_SUL" min="0" value="0"></td></tr>
         <tr><td>🚘 ATENDIMENTO EXTERNO (NORTE)</td><td>R$ 700</td><td><input type="number" name="ATENDIMENTO_NORTE" min="0" value="0"></td></tr>
-        <tr><td>🔧 CHAVE DE RODA</td><td>R$ 600</td><td><input type="number" name="CHAVE_DE_RODA" min="0" value="0"></td></tr>
-        <tr><td>🧰 VENDA KIT REPARO</td><td>R$ 280 / R$ 320</td><td><input type="number" name="KIT_REPARO" min="0" value="0"></td></tr>
-        <tr><td>🛠️ VENDA PNEU</td><td>R$ 100 / R$ 125</td><td><input type="number" name="VENDA_PNEU" min="0" value="0"></td></tr>
-        <tr><td>💨 NITRO</td><td>R$ 7000 / R$ 7500</td><td><input type="number" name="NITRO" min="0" value="0"></td></tr>
+        <tr><td>🔧 CHAVE DE RODA</td><td>R$ 960</td><td><input type="number" name="CHAVE_DE_RODA" min="0" value="0"></td></tr>
+        <tr><td>🧰 VENDA KIT REPARO</td><td>R$ 500</td><td><input type="number" name="VENDA_REPARO" min="0" value="0"></td></tr>
+        <tr><td>🛠️ VENDA PNEU</td><td>R$ 250</td><td><input type="number" name="VENDA_PNEU" min="0" value="0"></td></tr>
+        <tr><td>💨 NITRO</td><td>R$ 9.600</td><td><input type="number" name="NITRO" min="0" value="0"></td></tr>
       </table>
 
       <h2>📦 Itens e Acessórios</h2>
       <table>
         <tr><th>Item</th><th>Preço</th><th>Qtd</th></tr>
-        <tr><td>📡 RASTREADOR</td><td>R$ 12500</td><td><input type="number" name="RASTREADOR" min="0" value="0"></td></tr>
-        <tr><td>🏎️ KIT DRIFT (SUSPENSÃO COILOVER)</td><td>R$ 12500</td><td><input type="number" name="KIT_DRIFT" min="0" value="0"></td></tr>
+        <tr><td>📡 RASTREADOR</td><td>R$ 15.600</td><td><input type="number" name="RASTREADOR" min="0" value="0"></td></tr>
+        <tr><td>🏎️ KIT DRIFT (COILOVER)</td><td>R$ 15.600</td><td><input type="number" name="COILOVER" min="0" value="0"></td></tr>
+        <tr><td>🔊 BUZINA (Novo Item)</td><td>R$ 1.800</td><td><input type="number" name="BUZINA" min="0" value="0"></td></tr>
       </table>
 
       <h2>💥 Tunning - Melhorias de Performance</h2>
@@ -146,70 +133,69 @@
         <tr><td>🧠 MOTOR</td><td>Níveis Variados</td><td>
           <select name="MOTOR">
             <option value="0" selected>Nenhum</option>
-            <option value="7000">Nível 1 (R$ 7.000)</option>
-            <option value="9200">Nível 2 (R$ 9.200)</option>
-            <option value="10000">Nível 3 (R$ 10.000)</option>
-            <option value="13700">Nível 4 (R$ 13.700)</option>
-            <option value="17700">Nível 5 (R$ 17.700)</option>
+            <option value="9000">Nível 1 (R$ 9.000)</option>
+            <option value="11760">Nível 2 (R$ 11.760)</option>
+            <option value="13800">Nível 3 (R$ 13.800)</option>
+            <option value="17400">Nível 4 (R$ 17.400)</option>
+            <option value="22200">Nível 5 (R$ 22.200)</option>
           </select>
         </td></tr>
         <tr><td>🛑 FREIO</td><td>Níveis Variados</td><td>
           <select name="FREIO">
             <option value="0" selected>Nenhum</option>
-            <option value="7000">Nível 1 (R$ 7.000)</option>
-            <option value="9200">Nível 2 (R$ 9.200)</option>
-            <option value="10000">Nível 3 (R$ 10.000)</option>
-            <option value="13700">Nível 4 (R$ 13.700)</option>
+            <option value="9600">Nível 1 (R$ 9.600)</option>
+            <option value="11400">Nível 2 (R$ 11.400)</option>
+            <option value="13200">Nível 3 (R$ 13.200)</option>
+            <option value="17400">Nível 4 (R$ 17.400)</option>
           </select>
         </td></tr>
         <tr><td>⚙️ TRANSMISSÃO</td><td>Níveis Variados</td><td>
           <select name="TRANSMISSAO">
             <option value="0" selected>Nenhum</option>
-            <option value="9200">Nível 1 (R$ 9.200)</option>
-            <option value="10000">Nível 2 (R$ 10.000)</option>
-            <option value="13700">Nível 3 (R$ 13.700)</option>
-            <option value="17700">Nível 4 (R$ 17.700)</option>
+            <option value="11400">Nível 1 (R$ 11.400)</option>
+            <option value="13200">Nível 2 (R$ 13.200)</option>
+            <option value="17400">Nível 3 (R$ 17.400)</option>
+            <option value="22200">Nível 4 (R$ 22.200)</option>
           </select>
         </td></tr>
         <tr><td>🏁 SUSPENSÃO</td><td>Níveis Variados</td><td>
           <select name="SUSPENSAO">
             <option value="0" selected>Nenhum</option>
-            <option value="7000">Nível 1 (R$ 7.000)</option>
-            <option value="9200">Nível 2 (R$ 9.200)</option>
-            <option value="10000">Nível 3 (R$ 10.000)</option>
-            <option value="13700">Nível 4 (R$ 13.700)</option>
-            <option value="17700">Nível 5 (R$ 17.700)</option>
+            <option value="9000">Nível 1 (R$ 9.000)</option>
+            <option value="11400">Nível 2 (R$ 11.400)</option>
+            <option value="13800">Nível 3 (R$ 13.800)</option>
+            <option value="17400">Nível 4 (R$ 17.400)</option>
+            <option value="22200">Nível 5 (R$ 22.200)</option>
           </select>
         </td></tr>
         <tr><td>🛡️ BLINDAGEM</td><td>Níveis Variados</td><td>
           <select name="BLINDAGEM">
             <option value="0" selected>Nenhum</option>
-            <option value="9700">Nível 1 (R$ 9.700)</option>
-            <option value="11200">Nível 2 (R$ 11.200)</option>
-            <option value="16000">Nível 3 (R$ 16.000)</option>
-            <option value="21200">Nível 4 (R$ 21.200)</option>
-            <option value="26200">Nível 5 (R$ 26.200)</option>
+            <option value="13200">Nível 1 (R$ 13.200)</option>
+            <option value="15000">Nível 2 (R$ 15.000)</option>
+            <option value="19800">Nível 3 (R$ 19.800)</option>
+            <option value="25800">Nível 4 (R$ 25.800)</option>
+            <option value="32400">Nível 5 (R$ 32.400)</option>
           </select>
         </td></tr>
-        <tr><td>🚀 TURBO</td><td>R$ 5700</td><td><input type="number" name="TURBO" min="0" value="0"></td></tr>
+        <tr><td>🚀 TURBO</td><td>R$ 7.800</td><td><input type="number" name="TURBO" min="0" value="0"></td></tr>
       </table>
 
       <h2>🎨 Tunning - Visual e Estética</h2>
       <table>
         <tr><th>Item</th><th>Preço</th><th>Qtd</th></tr>
-        <tr><td>🧼 COSMETIC</td><td>R$ 1200</td><td><input type="number" name="COSMETIC" min="0" value="0"></td></tr>
-        <tr><td>🎨 PINTURA</td><td>R$ 1400</td><td><input type="number" name="PINTURA" min="0" value="0"></td></tr>
-        <tr><td>🚙 RODAS</td><td>R$ 3200</td><td><input type="number" name="RODAS" min="0" value="0"></td></tr>
-        <tr><td>✨ COR DAS RODAS</td><td>R$ 1400</td><td><input type="number" name="COR_RODAS" min="0" value="0"></td></tr>
-        <tr><td>💨 FUMAÇA DAS RODAS</td><td>R$ 950</td><td><input type="number" name="FUMACA_RODAS" min="0" value="0"></td></tr>
-        <tr><td>🕶️ INSUFILM</td><td>R$ 950</td><td><input type="number" name="INSUFILM" min="0" value="0"></td></tr>
-        <tr><td>🌈 NEÓN (LADO)</td><td>R$ 950</td><td><input type="number" name="NEON_LADO" min="0" value="0"></td></tr>
-        <tr><td>🎆 NEÓN (COR)</td><td>R$ 950</td><td><input type="number" name="NEON_COR" min="0" value="0"></td></tr>
-        <tr><td>🔦 XENON (ATIVAÇÃO)</td><td>R$ 950</td><td><input type="number" name="XENON_ATIVACAO" min="0" value="0"></td></tr>
-        <tr><td>💡 XENON (COR)</td><td>R$ 950</td><td><input type="number" name="XENON_COR" min="0" value="0"></td></tr>
-        <tr><td>🚓 POLICE LIVERY (BED)</td><td>R$ 300</td><td><input type="number" name="POLICE_LIVERY" min="0" value="0"></td></tr>
-        <tr><td>📛 EXTRAS</td><td>R$ 2200</td><td><input type="number" name="EXTRAS" min="0" value="0"></td></tr>
-        <tr><td>🚧 PLACA</td><td>R$ 850</td><td><input type="number" name="PLACA" min="0" value="0"></td></tr>
+        <tr><td>🧼 COSMETIC</td><td>R$ 1.800</td><td><input type="number" name="COSMETIC" min="0" value="0"></td></tr>
+        <tr><td>🎨 PINTURA</td><td>R$ 1.920</td><td><input type="number" name="PINTURA" min="0" value="0"></td></tr>
+        <tr><td>🚙 RODAS</td><td>R$ 4.200</td><td><input type="number" name="RODAS" min="0" value="0"></td></tr>
+        <tr><td>💨 FUMAÇA DAS RODAS</td><td>R$ 2.160</td><td><input type="number" name="FUMACA_RODAS" min="0" value="0"></td></tr>
+        <tr><td>🕶️ INSUFILM</td><td>R$ 1.440</td><td><input type="number" name="INSUFILM" min="0" value="0"></td></tr>
+        <tr><td>🌈 NEÓN (LADO)</td><td>R$ 1.440</td><td><input type="number" name="NEON" min="0" value="0"></td></tr>
+        <tr><td>🎆 NEÓN (COR)</td><td>R$ 1.440</td><td><input type="number" name="NEON_COR" min="0" value="0"></td></tr>
+        <tr><td>🔦 XENON (ATIVAÇÃO)</td><td>R$ 1.440</td><td><input type="number" name="XENON" min="0" value="0"></td></tr>
+        <tr><td>💡 XENON (COR)</td><td>R$ 1.440</td><td><input type="number" name="XENON_COR" min="0" value="0"></td></tr>
+        <tr><td>🚧 PLACA</td><td>R$ 3.000</td><td><input type="number" name="PLACA" min="0" value="0"></td></tr>
+        <tr><td>🚓 POLICE LIVERY (Mantido)</td><td>R$ 300</td><td><input type="number" name="POLICE_LIVERY" min="0" value="0"></td></tr>
+        <tr><td>📛 EXTRAS (Mantido)</td><td>R$ 2200</td><td><input type="number" name="EXTRAS" min="0" value="0"></td></tr>
       </table>
 
       <div class="button-group">
@@ -222,22 +208,42 @@
   </div>
 
   <script>
-    // Definição dos preços fixos para todos os itens.
-    // ATENDIMENTO_SUL e ATENDIMENTO_NORTE foram corrigidos.
+    // Novos preços fixos baseados na coluna "Valor" da sua tabela.
     const precosFixos = {
-      REPARO: 300, PNEU: 125, ATENDIMENTO_SUL: 1200, ATENDIMENTO_NORTE: 700, // Preços corrigidos
-      CHAVE_DE_RODA: 600, RASTREADOR: 12500, KIT_DRIFT: 12500, TURBO: 5700,
-      COSMETIC: 1200, PINTURA: 1400, RODAS: 3200, COR_RODAS: 1400,
-      FUMACA_RODAS: 950, INSUFILM: 950, NEON_LADO: 950, NEON_COR: 950,
-      XENON_ATIVACAO: 950, XENON_COR: 950, POLICE_LIVERY: 300,
-      EXTRAS: 2200, PLACA: 850
-    };
+      // Itens de Serviço (Mantidos onde não havia valor na nova tabela)
+      REPARO: 300, 
+      PNEU: 125, 
+      ATENDIMENTO_SUL: 1200, 
+      ATENDIMENTO_NORTE: 700, 
+      
+      // Itens Atualizados com novos valores
+      CHAVE_DE_RODA: 960, 
+      VENDA_REPARO: 500, // Anteriormente KIT_REPARO
+      VENDA_PNEU: 250, 
+      NITRO: 9600,
+      
+      // Acessórios
+      RASTREADOR: 15600, 
+      COILOVER: 15600, // Novo nome para KIT_DRIFT
+      BUZINA: 1800, // Novo item
+      
+      // Estética/Visual
+      TURBO: 7800,
+      COSMETIC: 1800, 
+      PINTURA: 1920, 
+      RODAS: 4200, 
+      // COR_RODAS: 1400, // Removido pois não está na nova lista
+      FUMACA_RODAS: 2160, 
+      INSUFILM: 1440, 
+      NEON: 1440, // Substitui NEON_LADO
+      NEON_COR: 1440, 
+      XENON: 1440, // Substitui XENON_ATIVAÇÃO
+      XENON_COR: 1440,
+      PLACA: 3000, 
 
-    // Definição dos preços com e sem parceria
-    const precosVariaveis = {
-        KIT_REPARO: { com: 280, sem: 320 },
-        VENDA_PNEU: { com: 100, sem: 125 },
-        NITRO:      { com: 7000, sem: 7500 }
+      // Itens não listados na nova tabela, mantidos com valores anteriores
+      POLICE_LIVERY: 300, 
+      EXTRAS: 2200 
     };
 
     // Lista dos itens que são <select> para níveis de performance
@@ -251,26 +257,15 @@
       const form = document.forms["calcForm"];
       let total = 0;
       
-      // Determina se a parceria está ativa
-      const isParceria = form.parceria.value === 'com';
-      const tipoPreco = isParceria ? 'com' : 'sem';
-
       // 1. Calcula itens de Qtd com Preços Fixos
       for (const item in precosFixos) {
-        const input = form[item];
+        // Usa o nome do campo atualizado no HTML (ex: VENDA_REPARO, COILOVER)
+        const input = form[item]; 
         const qtd = parseInt(input ? input.value : '0') || 0;
         total += precosFixos[item] * qtd;
       }
       
-      // 2. Calcula itens de Qtd com Preços Variáveis (Parceria)
-      for (const item in precosVariaveis) {
-        const input = form[item];
-        const qtd = parseInt(input ? input.value : '0') || 0;
-        const preco = precosVariaveis[item][tipoPreco];
-        total += preco * qtd;
-      }
-      
-      // 3. Calcula itens de Nível (Select)
+      // 2. Calcula itens de Nível (Select)
       itensComNiveis.forEach(item => {
         const select = form[item];
         const precoNivel = parseInt(select ? select.value : '0') || 0;
@@ -291,9 +286,6 @@
         const select = form[item];
         if (select) select.value = '0';
       });
-
-      // Reseta o seletor de Parceria para "Sem Parceria"
-      form.parceria.value = 'sem';
       
       document.getElementById("resultado").innerHTML = "";
     }
