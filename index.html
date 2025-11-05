@@ -20,8 +20,8 @@
       background: #282a36;
       padding: 40px;
       border-radius: 15px;
-      max-width: 1000px;
-      width: 100%;
+      max-width: 1400px; /* Aumentado para o layout horizontal */
+      width: 95%; /* Usar a maior parte da largura da tela */
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     }
     h1 {
@@ -37,6 +37,18 @@
       border-bottom: 1px solid #44475a;
       padding-bottom: 8px;
     }
+    /* Estilo Grid para as seções de conteúdo */
+    .content-sections {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* 3 colunas em telas grandes, 1 em telas pequenas */
+        gap: 30px;
+        margin-top: 20px;
+    }
+    .section-block {
+        padding: 10px;
+        background: #383a4a;
+        border-radius: 8px;
+    }
     table {
       width: 100%;
       margin-top: 15px;
@@ -44,17 +56,20 @@
     }
     th, td {
       padding: 12px;
-      font-size: 1.1em;
+      font-size: 1em;
       border-bottom: 1px solid #44475a;
+      text-align: left;
     }
     input[type="number"], select {
-      width: 150px;
+      width: 100%; /* Ajuste para preencher a coluna */
+      min-width: 80px;
       padding: 6px;
-      font-size: 1.1em;
+      font-size: 1em;
       background: #383a4a;
       color: #fff;
       border: 1px solid #6272a4;
       border-radius: 8px;
+      box-sizing: border-box;
     }
     .parceria-options {
         margin-bottom: 30px;
@@ -70,6 +85,7 @@
     .button-group {
       text-align: center;
       margin-top: 30px;
+      margin-bottom: 10px;
     }
     button {
       padding: 14px 28px;
@@ -98,11 +114,19 @@
     .result {
       background: #1a1b26;
       padding: 20px;
-      margin-top: 30px;
+      margin-top: 20px;
+      margin-bottom: 20px;
       border-radius: 10px;
-      font-size: 1.3em;
+      font-size: 1.6em; /* Aumentado para destaque no topo */
       border: 1px solid #444;
       text-align: center;
+      color: #ff79c6; /* Cor de destaque para o resultado */
+    }
+    /* Estilo para telas menores */
+    @media (max-width: 900px) {
+        .content-sections {
+            grid-template-columns: 1fr; /* Volta para 1 coluna em telas menores */
+        }
     }
   </style>
 </head>
@@ -114,108 +138,116 @@
 
       <div class="button-group top-button-group">
         <button type="button" class="calculate" onclick="calcular()">Calcular Total</button>
+        <button type="button" class="reset" onclick="resetar()">Zerar Tudo</button>
       </div>
+
+      <div id="resultado" class="result"></div>
 
       <div class="parceria-options">
           <label><input type="radio" name="parceria" value="sem" checked> Sem Parceria</label>
           <label><input type="radio" name="parceria" value="com"> Com Parceria</label>
       </div>
 
-      <h2>🔩 Serviços de Oficina</h2>
-      <table>
-        <tr><th>Item</th><th>Preço</th><th>Qtd</th></tr>
-        <tr><td>🔩 REPARO (Mantido)</td><td>R$ 300</td><td><input type="number" name="REPARO" min="0" value="0"></td></tr>
-        <tr><td>⚙️ PNEU</td><td>R$ 200</td><td><input type="number" name="PNEU" min="0" value="0"></td></tr> <tr><td>🚗 ATENDIMENTO EXTERNO (SUL)</td><td>R$ 1200</td><td><input type="number" name="ATENDIMENTO_SUL" min="0" value="0"></td></tr>
-        <tr><td>🚘 ATENDIMENTO EXTERNO (NORTE)</td><td>R$ 700</td><td><input type="number" name="ATENDIMENTO_NORTE" min="0" value="0"></td></tr>
-        <tr><td>🔧 CHAVE DE RODA</td><td>R$ 960</td><td><input type="number" name="CHAVE_DE_RODA" min="0" value="0"></td></tr>
-        <tr><td>🧰 VENDA KIT REPARO</td><td>R$ 400 / R$ 500</td><td><input type="number" name="VENDA_REPARO" min="0" value="0"></td></tr> <tr><td>🛠️ VENDA PNEU</td><td>R$ 200 / R$ 250</td><td><input type="number" name="VENDA_PNEU" min="0" value="0"></td></tr> <tr><td>💨 NITRO</td><td>R$ 8.000 / R$ 9.600</td><td><input type="number" name="NITRO" min="0" value="0"></td></tr> </table>
+      <div class="content-sections">
 
-      <h2>📦 Itens e Acessórios</h2>
-      <table>
-        <tr><th>Item</th><th>Preço</th><th>Qtd</th></tr>
-        <tr><td>📡 RASTREADOR</td><td>R$ 15.600</td><td><input type="number" name="RASTREADOR" min="0" value="0"></td></tr>
-        <tr><td>🏎️ KIT DRIFT (COILOVER)</td><td>R$ 15.600</td><td><input type="number" name="COILOVER" min="0" value="0"></td></tr>
-        <tr><td>🔊 BUZINA</td><td>R$ 1.800</td><td><input type="number" name="BUZINA" min="0" value="0"></td></tr>
-      </table>
+        <div class="section-block">
+            <h2>🔩 Serviços de Oficina</h2>
+            <table>
+              <tr><th>Item</th><th>Preço</th><th>Qtd</th></tr>
+              <tr><td>🔩 REPARO (Mantido)</td><td>R$ 300</td><td><input type="number" name="REPARO" min="0" value="0"></td></tr>
+              <tr><td>⚙️ PNEU</td><td>R$ 200</td><td><input type="number" name="PNEU" min="0" value="0"></td></tr>
+              <tr><td>🚗 ATENDIMENTO EXTERNO (SUL)</td><td>R$ 1200</td><td><input type="number" name="ATENDIMENTO_SUL" min="0" value="0"></td></tr>
+              <tr><td>🚘 ATENDIMENTO EXTERNO (NORTE)</td><td>R$ 700</td><td><input type="number" name="ATENDIMENTO_NORTE" min="0" value="0"></td></tr>
+              <tr><td>🔧 CHAVE DE RODA</td><td>R$ 960</td><td><input type="number" name="CHAVE_DE_RODA" min="0" value="0"></td></tr>
+              <tr><td>🧰 VENDA KIT REPARO</td><td>R$ 400 / R$ 500</td><td><input type="number" name="VENDA_REPARO" min="0" value="0"></td></tr>
+              <tr><td>🛠️ VENDA PNEU</td><td>R$ 200 / R$ 250</td><td><input type="number" name="VENDA_PNEU" min="0" value="0"></td></tr>
+              <tr><td>💨 NITRO</td><td>R$ 8.000 / R$ 9.600</td><td><input type="number" name="NITRO" min="0" value="0"></td></tr>
+              <tr><td>📡 RASTREADOR</td><td>R$ 15.600</td><td><input type="number" name="RASTREADOR" min="0" value="0"></td></tr>
+              <tr><td>🏎️ KIT DRIFT (COILOVER)</td><td>R$ 15.600</td><td><input type="number" name="COILOVER" min="0" value="0"></td></tr>
+              <tr><td>🔊 BUZINA</td><td>R$ 1.800</td><td><input type="number" name="BUZINA" min="0" value="0"></td></tr>
+            </table>
+        </div>
 
-      <h2>💥 Tunning - Melhorias de Performance</h2>
-      <table>
-        <tr><th>Item</th><th>Preço</th><th>Nível</th></tr>
-        <tr><td>🧠 MOTOR</td><td>Níveis Variados</td><td>
-          <select name="MOTOR">
-            <option value="0" selected>Nenhum</option>
-            <option value="9000">Nível 1 (R$ 9.000)</option>
-            <option value="11760">Nível 2 (R$ 11.760)</option>
-            <option value="13800">Nível 3 (R$ 13.800)</option>
-            <option value="17400">Nível 4 (R$ 17.400)</option>
-            <option value="22200">Nível 5 (R$ 22.200)</option>
-          </select>
-        </td></tr>
-        <tr><td>🛑 FREIO</td><td>Níveis Variados</td><td>
-          <select name="FREIO">
-            <option value="0" selected>Nenhum</option>
-            <option value="9600">Nível 1 (R$ 9.600)</option>
-            <option value="11400">Nível 2 (R$ 11.400)</option>
-            <option value="13200">Nível 3 (R$ 13.200)</option>
-            <option value="17400">Nível 4 (R$ 17.400)</option>
-          </select>
-        </td></tr>
-        <tr><td>⚙️ TRANSMISSÃO</td><td>Níveis Variados</td><td>
-          <select name="TRANSMISSAO">
-            <option value="0" selected>Nenhum</option>
-            <option value="11400">Nível 1 (R$ 11.400)</option>
-            <option value="13200">Nível 2 (R$ 13.200)</option>
-            <option value="17400">Nível 3 (R$ 17.400)</option>
-            <option value="22200">Nível 4 (R$ 22.200)</option>
-          </select>
-        </td></tr>
-        <tr><td>🏁 SUSPENSÃO</td><td>Níveis Variados</td><td>
-          <select name="SUSPENSAO">
-            <option value="0" selected>Nenhum</option>
-            <option value="9000">Nível 1 (R$ 9.000)</option>
-            <option value="11400">Nível 2 (R$ 11.400)</option>
-            <option value="13800">Nível 3 (R$ 13.800)</option>
-            <option value="17400">Nível 4 (R$ 17.400)</option>
-            <option value="22200">Nível 5 (R$ 22.200)</option>
-          </select>
-        </td></tr>
-        <tr><td>🛡️ BLINDAGEM</td><td>Níveis Variados</td><td>
-          <select name="BLINDAGEM">
-            <option value="0" selected>Nenhum</option>
-            <option value="13200">Nível 1 (R$ 13.200)</option>
-            <option value="15000">Nível 2 (R$ 15.000)</option>
-            <option value="19800">Nível 3 (R$ 19.800)</option>
-            <option value="25800">Nível 4 (R$ 25.800)</option>
-            <option value="32400">Nível 5 (R$ 32.400)</option>
-          </select>
-        </td></tr>
-        <tr><td>🚀 TURBO</td><td>R$ 7.800</td><td><input type="number" name="TURBO" min="0" value="0"></td></tr>
-      </table>
+        <div class="section-block">
+            <h2>💥 Tunning - Melhorias de Performance</h2>
+            <table>
+              <tr><th>Item</th><th>Preço</th><th>Nível</th></tr>
+              <tr><td>🧠 MOTOR</td><td>Níveis Variados</td><td>
+                <select name="MOTOR">
+                  <option value="0" selected>Nenhum</option>
+                  <option value="9000">Nível 1 (R$ 9.000)</option>
+                  <option value="11760">Nível 2 (R$ 11.760)</option>
+                  <option value="13800">Nível 3 (R$ 13.800)</option>
+                  <option value="17400">Nível 4 (R$ 17.400)</option>
+                  <option value="22200">Nível 5 (R$ 22.200)</option>
+                </select>
+              </td></tr>
+              <tr><td>🛑 FREIO</td><td>Níveis Variados</td><td>
+                <select name="FREIO">
+                  <option value="0" selected>Nenhum</option>
+                  <option value="9600">Nível 1 (R$ 9.600)</option>
+                  <option value="11400">Nível 2 (R$ 11.400)</option>
+                  <option value="13200">Nível 3 (R$ 13.200)</option>
+                  <option value="17400">Nível 4 (R$ 17.400)</option>
+                </select>
+              </td></tr>
+              <tr><td>⚙️ TRANSMISSÃO</td><td>Níveis Variados</td><td>
+                <select name="TRANSMISSAO">
+                  <option value="0" selected>Nenhum</option>
+                  <option value="11400">Nível 1 (R$ 11.400)</option>
+                  <option value="13200">Nível 2 (R$ 13.200)</option>
+                  <option value="17400">Nível 3 (R$ 17.400)</option>
+                  <option value="22200">Nível 4 (R$ 22.200)</option>
+                </select>
+              </td></tr>
+              <tr><td>🏁 SUSPENSÃO</td><td>Níveis Variados</td><td>
+                <select name="SUSPENSAO">
+                  <option value="0" selected>Nenhum</option>
+                  <option value="9000">Nível 1 (R$ 9.000)</option>
+                  <option value="11400">Nível 2 (R$ 11.400)</option>
+                  <option value="13800">Nível 3 (R$ 13.800)</option>
+                  <option value="17400">Nível 4 (R$ 17.400)</option>
+                  <option value="22200">Nível 5 (R$ 22.200)</option>
+                </select>
+              </td></tr>
+              <tr><td>🛡️ BLINDAGEM</td><td>Níveis Variados</td><td>
+                <select name="BLINDAGEM">
+                  <option value="0" selected>Nenhum</option>
+                  <option value="13200">Nível 1 (R$ 13.200)</option>
+                  <option value="15000">Nível 2 (R$ 15.000)</option>
+                  <option value="19800">Nível 3 (R$ 19.800)</option>
+                  <option value="25800">Nível 4 (R$ 25.800)</option>
+                  <option value="32400">Nível 5 (R$ 32.400)</option>
+                </select>
+              </td></tr>
+              <tr><td>🚀 TURBO</td><td>R$ 7.800</td><td><input type="number" name="TURBO" min="0" value="0"></td></tr>
+            </table>
+        </div>
 
-      <h2>🎨 Tunning - Visual e Estética</h2>
-      <table>
-        <tr><th>Item</th><th>Preço</th><th>Qtd</th></tr>
-        <tr><td>🧼 COSMETIC</td><td>R$ 1.800</td><td><input type="number" name="COSMETIC" min="0" value="0"></td></tr>
-        <tr><td>🎨 PINTURA</td><td>R$ 1.920</td><td><input type="number" name="PINTURA" min="0" value="0"></td></tr>
-        <tr><td>🚙 RODAS</td><td>R$ 4.200</td><td><input type="number" name="RODAS" min="0" value="0"></td></tr>
-        <tr><td>💨 FUMAÇA DAS RODAS</td><td>R$ 2.160</td><td><input type="number" name="FUMACA_RODAS" min="0" value="0"></td></tr>
-        <tr><td>🕶️ INSUFILM</td><td>R$ 1.440</td><td><input type="number" name="INSUFILM" min="0" value="0"></td></tr>
-        <tr><td>🌈 NEÓN (LADO)</td><td>R$ 1.440</td><td><input type="number" name="NEON" min="0" value="0"></td></tr>
-        <tr><td>🎆 NEÓN (COR)</td><td>R$ 1.440</td><td><input type="number" name="NEON_COR" min="0" value="0"></td></tr>
-        <tr><td>🔦 XENON (ATIVAÇÃO)</td><td>R$ 1.440</td><td><input type="number" name="XENON" min="0" value="0"></td></tr>
-        <tr><td>💡 XENON (COR)</td><td>R$ 1.440</td><td><input type="number" name="XENON_COR" min="0" value="0"></td></tr>
-        <tr><td>🚧 PLACA</td><td>R$ 3.000</td><td><input type="number" name="PLACA" min="0" value="0"></td></tr>
-        <tr><td>🚓 POLICE LIVERY (Mantido)</td><td>R$ 300</td><td><input type="number" name="POLICE_LIVERY" min="0" value="0"></td></tr>
-        <tr><td>📛 EXTRAS (Mantido)</td><td>R$ 2200</td><td><input type="number" name="EXTRAS" min="0" value="0"></td></tr>
-      </table>
+        <div class="section-block">
+            <h2>🎨 Tunning - Visual e Estética</h2>
+            <table>
+              <tr><th>Item</th><th>Preço</th><th>Qtd</th></tr>
+              <tr><td>🧼 COSMETIC</td><td>R$ 1.800</td><td><input type="number" name="COSMETIC" min="0" value="0"></td></tr>
+              <tr><td>🎨 PINTURA</td><td>R$ 1.920</td><td><input type="number" name="PINTURA" min="0" value="0"></td></tr>
+              <tr><td>🚙 RODAS</td><td>R$ 4.200</td><td><input type="number" name="RODAS" min="0" value="0"></td></tr>
+              <tr><td>💨 FUMAÇA DAS RODAS</td><td>R$ 2.160</td><td><input type="number" name="FUMACA_RODAS" min="0" value="0"></td></tr>
+              <tr><td>🕶️ INSUFILM</td><td>R$ 1.440</td><td><input type="number" name="INSUFILM" min="0" value="0"></td></tr>
+              <tr><td>🌈 NEÓN (LADO)</td><td>R$ 1.440</td><td><input type="number" name="NEON" min="0" value="0"></td></tr>
+              <tr><td>🎆 NEÓN (COR)</td><td>R$ 1.440</td><td><input type="number" name="NEON_COR" min="0" value="0"></td></tr>
+              <tr><td>🔦 XENON (ATIVAÇÃO)</td><td>R$ 1.440</td><td><input type="number" name="XENON" min="0" value="0"></td></tr>
+              <tr><td>💡 XENON (COR)</td><td>R$ 1.440</td><td><input type="number" name="XENON_COR" min="0" value="0"></td></tr>
+              <tr><td>🚧 PLACA</td><td>R$ 3.000</td><td><input type="number" name="PLACA" min="0" value="0"></td></tr>
+              <tr><td>🚓 POLICE LIVERY (Mantido)</td><td>R$ 300</td><td><input type="number" name="POLICE_LIVERY" min="0" value="0"></td></tr>
+              <tr><td>📛 EXTRAS (Mantido)</td><td>R$ 2200</td><td><input type="number" name="EXTRAS" min="0" value="0"></td></tr>
+            </table>
+        </div>
 
-      <div class="button-group">
+      </div> <div class="button-group">
         <button type="button" class="calculate" onclick="calcular()">Calcular</button>
         <button type="button" class="reset" onclick="resetar()">Zerar</button>
       </div>
     </form>
-
-    <div id="resultado" class="result"></div>
   </div>
 
   <script>
@@ -223,7 +255,7 @@
     const precosFixos = {
       // Itens de Serviço
       REPARO: 300, 
-      PNEU: 200, // <--- CORRIGIDO PARA 200
+      PNEU: 200, 
       ATENDIMENTO_SUL: 1200, 
       ATENDIMENTO_NORTE: 700, 
       CHAVE_DE_RODA: 960, 
@@ -251,7 +283,7 @@
       EXTRAS: 2200 
     };
 
-    // Definição dos preços com e sem parceria (REINTRODUZIDO)
+    // Definição dos preços com e sem parceria
     const precosVariaveis = {
         VENDA_REPARO: { com: 400, sem: 500 },
         VENDA_PNEU: { com: 200, sem: 250 },
